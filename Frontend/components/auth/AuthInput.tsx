@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useId } from "react";
 import { AlertCircle } from "lucide-react";
 
 interface AuthInputProps extends React.InputHTMLAttributes<HTMLInputElement> {

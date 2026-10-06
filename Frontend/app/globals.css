@@ -25,3 +25,16 @@ input[type="number"]::-webkit-outer-spin-button {
 .glow-gold {
   box-shadow: 0 0 25px -5px rgba(217, 119, 6, 0.25);
 }
+
+/* Circular verification wheel shown while a UPI payment is confirmed. */
+@keyframes shirdi-wheel {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shirdi-wheel-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}

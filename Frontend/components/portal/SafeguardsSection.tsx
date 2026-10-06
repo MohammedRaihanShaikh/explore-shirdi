@@ -2,38 +2,44 @@
 
 import React from "react";
 import { ShieldCheck, Receipt, Accessibility, Headphones } from "lucide-react";
+import { usePreferences } from "@/lib/i18n";
+import type { TranslationKey } from "@/lib/i18n/en";
 
 export default function SafeguardsSection() {
-  const safeguards = [
+  const { t } = usePreferences();
+
+  const safeguards: {
+    id: string;
+    titleKey: TranslationKey;
+    descriptionKey: TranslationKey;
+    icon: React.ReactNode;
+    bg: string;
+  }[] = [
     {
       id: "certified",
-      title: "Sansthan Certified",
-      description:
-        "Direct real-time API connection to Shri Saibaba Sansthan Trust ticketing servers.",
+      titleKey: "safeguards.certified.title",
+      descriptionKey: "safeguards.certified.description",
       icon: <ShieldCheck className="w-5 h-5 text-orange-600" />,
       bg: "bg-[#FFF4EC] border-orange-200/70",
     },
     {
       id: "zero-commission",
-      title: "Zero Commission Rates",
-      description:
-        "100% subsidized darshan & prasadalaya pricing strictly mandated by Trust guidelines.",
+      titleKey: "safeguards.commission.title",
+      descriptionKey: "safeguards.commission.description",
       icon: <Receipt className="w-5 h-5 text-amber-600" />,
       bg: "bg-[#FEFCE8] border-amber-200/70",
     },
     {
       id: "wheelchair-seva",
-      title: "Free Wheelchair Seva",
-      description:
-        "Stationed attendants ready 24/7 at Gate 2 with dedicated ramp access to the Sanctum.",
+      titleKey: "safeguards.wheelchair.title",
+      descriptionKey: "safeguards.wheelchair.description",
       icon: <Accessibility className="w-5 h-5 text-emerald-600" />,
       bg: "bg-[#F0FDF4] border-emerald-200/70",
     },
     {
       id: "concierge",
-      title: "24/7 Pilgrim Concierge",
-      description:
-        "Multilingual support in Marathi, Hindi, Telugu, Tamil, and English on WhatsApp & Call.",
+      titleKey: "safeguards.concierge.title",
+      descriptionKey: "safeguards.concierge.description",
       icon: <Headphones className="w-5 h-5 text-blue-600" />,
       bg: "bg-[#EFF6FF] border-blue-200/70",
     },
@@ -44,10 +50,10 @@ export default function SafeguardsSection() {
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto mb-10">
         <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-[#B45309] uppercase block mb-1">
-          Sanctum Assurance
+          {t("safeguards.eyebrow")}
         </span>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-slate-900 tracking-tight">
-          Official Trust &amp; Pilgrim Safeguards
+          {t("safeguards.title")}
         </h2>
       </div>
 
@@ -62,10 +68,10 @@ export default function SafeguardsSection() {
               {item.icon}
             </div>
             <h3 className="text-sm font-bold text-slate-900 mb-1.5">
-              {item.title}
+              {t(item.titleKey)}
             </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
-              {item.description}
+              {t(item.descriptionKey)}
             </p>
           </div>
         ))}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import Link from "next/link";
 import { Lock, Eye, EyeOff, Check, X, AlertCircle } from "lucide-react";
 
@@ -19,13 +19,17 @@ export default function PasswordInput({
   showStrengthMeter = false,
   showForgotPassword = false,
   forgotPasswordHref = "/forgot-password",
-  id = "password",
+  id,
   value = "",
   onChange,
   className = "",
   ...props
 }: PasswordInputProps) {
   const [isVisible, setIsVisible] = useState(false);
+  // Unique per instance so two password fields on one form never share an id
+  // (duplicate ids make <label htmlFor> point at the wrong input).
+  const generatedId = useId();
+  const inputId = id || generatedId;
   const passwordStr = String(value || "");
 
   // Strength evaluation
@@ -59,7 +63,7 @@ export default function PasswordInput({
   return (
     <div className="w-full flex flex-col gap-1.5">
       <div className="flex items-center justify-between text-xs font-semibold">
-        <label htmlFor={id} className="text-slate-700 font-medium">
+        <label htmlFor={inputId} className="text-slate-700 font-medium">
           {label}
         </label>
         {showForgotPassword && (
@@ -78,7 +82,7 @@ export default function PasswordInput({
         </div>
 
         <input
-          id={id}
+          id={inputId}
           type={isVisible ? "text" : "password"}
           value={value}
           onChange={onChange}

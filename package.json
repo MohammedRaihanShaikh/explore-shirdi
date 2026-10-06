@@ -1,0 +1,13 @@
+{
+  "name": "explore-shirdi",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:backend": "cd Backend && python run.py",
+    "dev:frontend": "cd Frontend && npm run dev",
+    "build:frontend": "cd Frontend && npm run build"
+  },
+  "dependencies": {
+    "next-pwa": "^5.6.0"
+  }
+}

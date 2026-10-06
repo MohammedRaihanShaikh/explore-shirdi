@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PreferencesProvider } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "Explore Shirdi - Sacred Sanctuary Portal & Devotee Access",
@@ -15,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <body className="font-sans bg-[#F4F6FB] text-slate-800 antialiased min-h-full flex flex-col">
-        {children}
+        <PreferencesProvider>{children}</PreferencesProvider>
       </body>
     </html>
   );

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="saffron" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#EA580C" />
+      <stop offset="55%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#FBBF24" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#saffron)" />
+  <circle cx="32" cy="32" r="25" fill="#FFFFFF" />
+  <text
+    x="32"
+    y="33"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="30"
+    font-weight="700"
+    text-anchor="middle"
+    dominant-baseline="central"
+    fill="#C2410C"
+  >&#2384;</text>
+</svg>

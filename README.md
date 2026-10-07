@@ -1,149 +1,250 @@
-# Explore Shirdi – Sacred Pilgrimage Portal
+# 🕌 Explore Shirdi – Sacred Pilgrimage Portal
 
-![Explore Shirdi Banner](https://raw.githubusercontent.com/your-org/explore-shirdi/main/public/shirdi-sanctum.jpg)
-
-## 📖 Overview
-A **Next.js 16** web application that provides a premium, fully‑responsive pilgrimage experience for **Shirdi Sai Baba** devotees. The portal offers:
-- Secure authentication (login / register / forgot‑password).
-- A personalized dashboard with real‑time queue status, climate data, and live‑stream capabilities.
-- Five core sections:
-  - **Discover & Attractions** – interactive cards for sacred sites (Dwarkamai, Samadhi Mandir, Chavadi, Lendi Baug, etc.).
-  - **Darshan & Live Aarti** – Aarti schedule, VIP pass booking, and live‑stream banner.
-  - **Luxury Stays & Ashrams** – curated accommodation cards with pricing, distance, and amenities.
-  - **Prasadam & Dining** – satvik meal options, official Sansthan kitchen, and restaurant listings.
-  - **AI Trip Planner** – toggles for stays/meals/transport, itinerary generation, and export actions.
-
-> The UI follows the brand palette (`#A73710`, `#B45309`, `#F59E0B`) and uses **Google Fonts** (Plus Jakarta Sans & Playfair Display) loaded via `@import` at the very top of `globals.css`.
+A full-stack web application for **Shirdi Sai Baba** devotees — built with **Next.js 16** (frontend) and **FastAPI + Python** (backend).
 
 ---
 
-## 📁 Repository Layout
-```
-frontend/                     # Root of the Next.js app
-├─ app/                       # Next.js App Router
-│  ├─ (auth)/                # Unauthenticated routes
-│  │   ├─ login/page.tsx
-│  │   ├─ register/page.tsx
-│  │   └─ forgot-password/page.tsx
-│  ├─ (portal)/               # Protected routes (post‑login)
-│  │   ├─ dashboard/page.tsx
-│  │   ├─ attractions/page.tsx
-│  │   ├─ darshan/page.tsx
-│  │   ├─ stays/page.tsx
-│  │   ├─ dining/page.tsx
-│  │   └─ ai‑planner/page.tsx
-│  ├─ globals.css            # Tailwind + Google‑font import (must be first line)
-│  ├─ layout.tsx              # Root layout (wraps all pages)
-│  └─ page.tsx                # Redirects to /login if unauthenticated
-├─ components/
-│  ├─ auth/                  # Form inputs & AuthLayout
-│  ├─ portal/                # Header, Footer, Hero, Section components
-│  └─ ui/ToggleSwitch.tsx    # Re‑usable toggle switch (used by AI Planner)
-├─ public/                    # Static assets (photos, icons)
-│  ├─ samadhi-mandir.jpg      # User‑provided Sai Baba statue photo
-│  ├─ dwarkamai.jpg           # User‑provided Dwarkamai Masjid photo
-│  └─ … (other images)       # Lendi Baug, Chavadi, etc.
-├─ next.config.ts
-├─ tailwind.config.ts
-├─ postcss.config.mjs
-├─ tsconfig.json
-└─ package.json
-```
+## 📁 Project Structure
 
-> **Important files**: 
-> - `app/globals.css` – first line must be the Google‑fonts `@import`. 
-> - `components/portal/PortalHeader.tsx` – dynamic active‑link detection via `usePathname()`. 
-> - `components/ui/ToggleSwitch.tsx` – reusable UI component.
+```
+Explore shirdi/
+├── frontend/          # Next.js 16 web application
+│   ├── app/           # Pages (App Router)
+│   ├── components/    # UI components
+│   └── public/        # Static images & assets
+│
+└── Backend/           # FastAPI Python server
+    ├── app/           # Routers, models, services
+    ├── alembic/       # DB migrations
+    ├── run.py         # Entry point
+    └── requirements.txt
+```
 
 ---
 
-## 💻 Prerequisites (Windows)
-| Tool | Minimum version | Installation command |
-|------|----------------|----------------------|
+## 💻 Prerequisites — Install These First
+
+| Tool | Min Version | Install Command (Windows) |
+|------|------------|--------------------------|
 | **Git** | 2.40+ | `winget install --id Git.Git` |
-| **Node.js** (includes npm) | v20.x LTS | `winget install --id OpenJS.NodeJS` |
-| **PowerShell 7** (optional) | 7.4+ | `winget install --id Microsoft.PowerShell` |
+| **Node.js** (npm included) | v20.x LTS | `winget install --id OpenJS.NodeJS` |
+| **Python** | 3.11+ | `winget install --id Python.Python.3.11` |
+| **PowerShell 7** *(optional)* | 7.4+ | `winget install --id Microsoft.PowerShell` |
 
-Verify the installations:
+Verify installations:
 ```powershell
 git --version
 node --version
 npm --version
+python --version
 ```
 
 ---
 
-## 🛠️ Setup & Development
-```powershell
-# 1️⃣ Clone the repo (or copy the folder you already have)
-git clone https://github.com/your-org/explore-shirdi.git
-cd explore-shirdi/frontend
+## 🚀 Full Setup for a New User
 
-# 2️⃣ Install exact dependencies (clean install)
+### Step 1 — Clone the Repository
+
+```powershell
+git clone https://github.com/your-org/explore-shirdi.git
+cd "explore-shirdi"
+```
+
+---
+
+### Step 2 — Backend Setup (FastAPI + Python)
+
+```powershell
+# Navigate to Backend folder
+cd Backend
+
+# Create a Python virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+.\venv\Scripts\Activate.ps1
+
+# If activation is blocked by policy, run this first:
+# Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+# Install all Python dependencies
+pip install -r requirements.txt
+
+# Copy the environment config template
+Copy-Item .env.example .env
+```
+
+#### Edit `.env` (minimum required changes):
+Open `Backend\.env` in any text editor and set:
+```env
+SECRET_KEY=any-random-string-at-least-32-characters-long
+APP_ENV=development
+DEBUG=true
+HOST=0.0.0.0
+PORT=8000
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
+```
+> 💡 **No PostgreSQL needed!** The app uses a local SQLite file (`explore_shirdi.db`) automatically when PostgreSQL is unavailable.
+
+#### Start the Backend Server:
+```powershell
+# Make sure venv is activated (you see "(venv)" in your prompt)
+python run.py
+```
+
+✅ You should see:
+```
+[Shirdi] Database tables ready.
+[Shirdi] Seeded demo user(s): arjun@example.com
+[Shirdi]   login -> arjun@example.com / Demo@1234
+[Shirdi] Administrator ready: admin@exploreshirdi.com
+INFO: Uvicorn running on http://0.0.0.0:8000
+```
+
+🔗 **Backend URLs:**
+| URL | Purpose |
+|-----|---------|
+| `http://localhost:8000` | API status |
+| `http://localhost:8000/health` | Health check |
+| **`http://localhost:8000/docs`** | 📚 Swagger UI (test all APIs) |
+| `http://localhost:8000/redoc` | API reference docs |
+
+---
+
+### Step 3 — Frontend Setup (Next.js)
+
+Open a **new PowerShell window** (keep backend running):
+
+```powershell
+# Navigate to Frontend folder
+cd "Explore shirdi\frontend"
+
+# Install Node.js dependencies
 npm ci
 
-# 3️⃣ Optional: create a minimal .env.local (extend later for real auth)
-"NEXT_PUBLIC_BASE_URL=http://localhost:3000" | Out-File -Encoding utf8 .env.local -Force
+# Create frontend environment file
+@"
+NEXT_PUBLIC_API_URL=http://localhost:8000/api
+NEXT_PUBLIC_WS_URL=ws://localhost:8000/api/live/ws
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+"@ | Out-File -Encoding utf8 .env.local -Force
 
-# 4️⃣ Run the dev server (Next.js will use port 3000 or fall back to 3001)
+# Start the development server
 npm run dev
 ```
-Open the printed URL (e.g., `http://localhost:3000`) in your browser.
 
-### Common dev commands
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Starts the development server with hot‑reloading. |
-| `npm run build` | Creates an optimized production build (`.next` folder). |
-| `npm start` | Runs the production build locally (default port 3000). |
-| `npm run lint` *(if configured)* | Lints the code with ESLint/Prettier. |
-| `npx tsc --noEmit` | TypeScript type‑checking – should report **0 errors**. |
-
----
-
-## 📦 Production Build & Export
-```powershell
-# Build the app (optimised server‑side rendering)
-npm run build
-
-# Serve the built app
-npm start   # opens on http://localhost:3000
-
-# Or export a fully static site (no Node server needed)
-npm run export   # outputs to ./out
-npx serve out       # quick static server, e.g., http://localhost:5000
+✅ You should see:
+```
+▲ Next.js 16.x
+- Local: http://localhost:3000
+✓ Ready in 2.1s
 ```
 
+Open **`http://localhost:3000`** in your browser.
+
 ---
 
-## 🔧 Known Issues & Future Work
-- **Authentication** – currently a mock redirect; integrate a real solution (e.g., **NextAuth.js** with JWT). 
-- **Booking / reminder actions** – UI only; needs backend endpoints. 
-- **Live Aarti stream** – placeholder button; connect to an actual video source (YouTube/HLS). 
-- **Port conflict** – dev server may fall back to `:3001` if `:3000` is busy. Stop the stray process (`taskkill /PID <PID> /F`). 
-- **Responsive testing** – run a manual audit on mobile devices to fine‑tune layouts.
+### Step 4 — Login & Test
+
+Use the auto-seeded demo credentials:
+
+| Role | Email | Password |
+|------|-------|----------|
+| **Pilgrim** | `arjun@example.com` | `Demo@1234` |
+| **Admin** | `admin@exploreshirdi.com` | `Admin@1234` |
+
+---
+
+## 📌 Available Pages (Frontend)
+
+| Route | Page |
+|-------|------|
+| `/login` | Sign In |
+| `/register` | Create Account |
+| `/dashboard` | Home (after login) |
+| `/attractions` | Discover & Sacred Sites |
+| `/darshan` | Darshan & Live Aarti |
+| `/stays` | Luxury Stays & Ashrams |
+| `/dining` | Prasadam & Dining |
+| `/ai-planner` | AI Trip Planner |
+
+---
+
+## 🔌 API Routers (Backend)
+
+| Prefix | Module | Purpose |
+|--------|--------|---------|
+| `/api/auth` | `auth.py` | Register, Login, JWT tokens |
+| `/api/darshan` | `darshan.py` | Queue status & pass booking |
+| `/api/stays` | `stays.py` | Accommodation listings & booking |
+| `/api/dining` | `dining.py` | Prasadam & restaurant options |
+| `/api/itinerary` | `itinerary.py` | AI Trip Planner (Gemini/OpenAI) |
+| `/api/live` | `live.py` | WebSocket – real-time data |
+| `/api/reminders` | `reminders.py` | Aarti alerts (WhatsApp/SMS) |
+| `/api/payments` | `payments.py` | Razorpay / UPI |
+| `/api/admin` | `admin.py` | Admin management panel |
+| `/api/content` | `content.py` | Sacred places & attractions |
+
+---
+
+## ⚠️ Common Issues & Fixes
+
+| Problem | Fix |
+|---------|-----|
+| `Activate.ps1` not recognized | Run: `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` |
+| `ModuleNotFoundError` | Venv not active — check for `(venv)` in prompt, then `pip install -r requirements.txt` |
+| Port 8000 already in use | `netstat -ano \| findstr :8000` → `taskkill /PID <PID> /F` |
+| Port 3000 in use | `netstat -ano \| findstr :3000` → `taskkill /PID <PID> /F`, or use fallback port `:3001` |
+| `@import` CSS parse error | Ensure the very **first line** of `frontend/app/globals.css` is the Google Fonts `@import url(...)` |
+| PostgreSQL error on startup | Safe to ignore — app auto-falls back to SQLite (`explore_shirdi.db`) |
+| AI Planner not working | Add `GOOGLE_GEMINI_API_KEY` or `OPENAI_API_KEY` to `Backend/.env` |
+
+---
+
+## 🧪 Useful Dev Commands
+
+### Frontend
+```powershell
+npm run dev          # Hot-reload dev server
+npm run build        # Production build
+npm start            # Serve production build
+npx tsc --noEmit     # TypeScript type-check (must be 0 errors)
+```
+
+### Backend
+```powershell
+# Always activate venv first!
+.\venv\Scripts\Activate.ps1
+
+python run.py                         # Start server (auto-reload in debug mode)
+uvicorn app.main:app --reload         # Alternative start command
+python -m pytest                      # Run tests
+```
 
 ---
 
 ## 🤝 Contributing
+
 1. Fork the repository.
-2. Create a feature branch (`git checkout -b feat/your-feature`).
-3. Make your changes and ensure `npm run dev` builds without warnings.
-4. Run `npx tsc --noEmit` – fix any TypeScript errors.
-5. Submit a Pull Request with a clear description of the change.
+2. Create a feature branch: `git checkout -b feat/your-feature`
+3. Make your changes.
+4. Frontend: run `npx tsc --noEmit` — must be 0 errors.
+5. Backend: run `python -m pytest` — all tests must pass.
+6. Submit a Pull Request with a clear description.
 
 ---
 
 ## 📜 License
-This project is licensed under the **MIT License** – feel free to use, modify, and distribute.
+
+This project is licensed under the **MIT License** — free to use, modify, and distribute.
 
 ---
 
 ## 📞 Contact
-- **Maintainer**: Ritesh Lande – <ritesh.lande@example.com>
-- **Issues**: Open a GitHub issue on the repo.
-- **Community**: Join the Shirdi Pilgrims Discord (invite link in the repo README).
+
+- **Maintainer**: Ritesh Lande
+- **Issues**: Open a GitHub issue on the repository.
 
 ---
 
-*Happy pilgrimage planning!* 🚩
+*🕉️ Sai Ram — Happy pilgrimage planning!* 🚩

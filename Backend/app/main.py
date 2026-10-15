@@ -138,6 +138,7 @@ Professional REST + WebSocket API for the Shirdi Sai Baba Devotee Portal.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,  # From ALLOWED_ORIGINS in .env
+    allow_origin_regex=r"^https://.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

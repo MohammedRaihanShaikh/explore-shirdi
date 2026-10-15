@@ -68,7 +68,6 @@ export function useRealtimeData() {
       ws.onopen = () => {
         if (!mounted.current) return;
         setIsConnected(true);
-        console.log("[Shirdi] WebSocket connected to live feed");
       };
 
       ws.onmessage = (event) => {
@@ -87,7 +86,6 @@ export function useRealtimeData() {
       ws.onclose = () => {
         if (!mounted.current) return;
         setIsConnected(false);
-        console.log("[Shirdi] WebSocket disconnected — reconnecting in 3s...");
         // Auto-reconnect after 3 seconds
         reconnectTimer.current = setTimeout(() => {
           if (mounted.current) connect();

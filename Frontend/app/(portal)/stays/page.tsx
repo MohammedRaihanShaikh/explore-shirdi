@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 /**
  * Luxury Stays & Ashrams — OTA-style listing.
@@ -812,18 +812,8 @@ export default function StaysPage() {
           </section>
         )}
 
-        {/* Results: filter rail + list */}
-        <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-6">
-          {/* Desktop filter rail */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-24 bg-white border border-slate-200/80 rounded-2xl p-4 shadow-xs">
-              <h2 className="flex items-center gap-1.5 text-sm font-bold text-slate-900 mb-4">
-                <SlidersHorizontal className="w-4 h-4 text-[#A73710]" />
-                {t("common.filters")}
-              </h2>
-              {filterControls}
-            </div>
-          </aside>
+        {/* Results: filter button + list */}
+        <div className="grid grid-cols-1 gap-6">
 
           <div>
             {/* Results header */}
@@ -845,7 +835,7 @@ export default function StaysPage() {
                 <button
                   type="button"
                   onClick={() => setFiltersOpen(true)}
-                  className="lg:hidden flex items-center gap-1.5 text-xs font-bold text-[#A73710] bg-white border border-slate-200 px-3 py-2 rounded-lg"
+                  className="flex items-center gap-1.5 text-xs font-bold text-[#A73710] bg-white border border-[#A73710]/30 px-3 py-2 rounded-lg hover:bg-amber-50 transition-colors"
                 >
                   <SlidersHorizontal className="w-3.5 h-3.5" />
                   {t("common.filters")}
@@ -855,30 +845,13 @@ export default function StaysPage() {
                     </span>
                   )}
                 </button>
-
-                <label className="flex items-center gap-2">
-                  <span className="text-[11px] font-semibold text-slate-500 hidden sm:inline">
-                    {t("stays.sortBy")}
-                  </span>
-                  <select
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value as SortKey)}
-                    className="text-xs font-semibold text-slate-700 border border-slate-200 rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-[#A73710]/30"
-                  >
-                    {(Object.keys(SORT_LABEL_KEYS) as SortKey[]).map((k) => (
-                      <option key={k} value={k}>
-                        {t(SORT_LABEL_KEYS[k])}
-                      </option>
-                    ))}
-                  </select>
-                </label>
               </div>
             </div>
 
             {/* Mobile filter sheet */}
             {filtersOpen && (
               <div
-                className="lg:hidden fixed inset-0 bg-black/50 z-50 flex items-end"
+                className="fixed inset-0 bg-black/50 z-50 flex items-end"
                 onClick={() => setFiltersOpen(false)}
               >
                 <div

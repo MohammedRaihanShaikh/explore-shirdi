@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import {
   Ticket,
   Bed,
@@ -104,14 +103,6 @@ export default function ServicesSection() {
             {t("services.subtitle")}
           </p>
         </div>
-
-        <Link
-          href="/attractions"
-          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#A73710] hover:text-[#7C2D12] transition-colors whitespace-nowrap group"
-        >
-          <span>{t("services.exploreAll")}</span>
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
       </div>
 
       {/* Services Grid (3x2) */}

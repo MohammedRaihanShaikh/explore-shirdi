@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { ReactNode } from "react";
 import Image from "next/image";
@@ -48,8 +48,8 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
               {/* Sacred Temple Sanctum Image Banner */}
               <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-md group mb-5 sm:mb-6 aspect-[16/9] sm:aspect-[16/8] lg:aspect-[16/10]">
                 <Image
-                  src="/shirdi-sanctum.jpg"
-                  alt="Shirdi Sai Baba Temple Sanctum"
+                  src="/sai-baba.jpg"
+                  alt="Shirdi Sai Baba Sacred Divine Portrait"
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 40vw"
@@ -61,7 +61,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                     &ldquo;Shraddha &amp; Saburi&rdquo;
                   </h3>
                   <p className="text-[10px] sm:text-xs text-slate-200 mt-0.5 leading-snug">
-                    Faith and Patience â€” Welcome back to your sacred companion.
+                    Faith and Patience — Welcome to your sacred companion.
                   </p>
                 </div>
               </div>

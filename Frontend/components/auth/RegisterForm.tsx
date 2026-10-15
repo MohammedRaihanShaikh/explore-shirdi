@@ -90,7 +90,7 @@ export default function RegisterForm() {
       window.dispatchEvent(new Event("shirdi_auth_change"));
 
       setIsSuccess(true);
-      setTimeout(() => router.push("/dashboard"), 1000);
+      setTimeout(() => router.push("/login"), 1000);
     } catch {
       setError("Cannot connect to server. Please make sure the backend is running at http://localhost:8000");
     } finally {
@@ -210,7 +210,7 @@ export default function RegisterForm() {
               className="w-4 h-4 mt-0.5 rounded text-[#A73710] focus:ring-[#A73710] border-slate-300 accent-[#A73710] flex-shrink-0"
             />
             <span className="leading-tight">
-              I agree to the <Link href="#" className="underline text-slate-800">Terms of Sanctum Access</Link> &amp; <Link href="#" className="underline text-slate-800">VIP Darshan Guidelines</Link>.
+              I agree to the <Link href="/contact" className="underline text-slate-800">Terms of Sanctum Access</Link> &amp; <Link href="/darshan" className="underline text-slate-800">VIP Darshan Guidelines</Link>.
             </span>
           </label>
         </div>

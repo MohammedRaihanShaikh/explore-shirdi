@@ -105,6 +105,7 @@ const PORTAL_LINKS: { href: string; labelKey: TranslationKey }[] = [
   { href: "/stays", labelKey: "nav.stays" },
   { href: "/dining", labelKey: "nav.dining" },
   { href: "/ai-planner", labelKey: "nav.planner" },
+  { href: "/contact", labelKey: "nav.contact" },
 ];
 
 /**

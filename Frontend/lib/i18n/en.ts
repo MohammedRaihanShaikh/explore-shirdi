@@ -16,14 +16,32 @@ export const en = {
 
   // ─── Navigation ───────────────────────────────────────────
   "nav.home": "Home",
-  "nav.attractions": "Discover & Attractions",
-  "nav.darshan": "Darshan & Live Aarti",
-  "nav.stays": "Luxury Stays & Ashrams",
-  "nav.dining": "Prasadam & Dining",
-  "nav.planner": "AI Trip Planner",
+  "nav.attractions": "Attractions",
+  "nav.darshan": "Darshan",
+  "nav.stays": "Stays",
+  "nav.dining": "Dining",
+  "nav.planner": "AI Planner",
+  "nav.contact": "Contact & Support",
   "nav.pilgrimPortal": "Pilgrim Portal",
   "nav.toggleMenu": "Toggle navigation menu",
   "nav.preferences": "Preferences",
+
+  // ─── Contact & Feedback ──────────────────────────────────
+  "contact.title": "Contact & Devotee Support",
+  "contact.subtitle": "Shri Saibaba Sansthan Trust helplines, emergency services & pilgrim feedback",
+  "contact.emergencyHelplines": "Emergency & Helplines",
+  "contact.timings": "Temple & Office Timings",
+  "contact.feedbackTitle": "Devotee Feedback & Inquiries",
+  "contact.feedbackSubtitle": "Share your pilgrimage experience or lodge an inquiry with the temple trust",
+  "contact.ratingLabel": "Your Experience Rating",
+  "contact.categoryLabel": "Feedback Category",
+  "contact.commentLabel": "Your Message / Suggestions",
+  "contact.submitFeedback": "Submit Feedback",
+  "contact.submitting": "Submitting...",
+  "contact.feedbackSubmitted": "Feedback submitted successfully! Om Sai Ram.",
+  "contact.myFeedback": "My Feedback History",
+  "contact.noFeedback": "You haven't submitted any feedback yet.",
+  "contact.signInToSubmit": "Please sign in to submit your feedback or track your previous inquiries.",
 
   // ─── Preferences panel ────────────────────────────────────
   "prefs.title": "Preferences",
@@ -53,7 +71,8 @@ export const en = {
   "account.signOut": "Sign Out",
   "account.accountDetails": "Account details",
   "account.editDetails": "Edit my details",
-  "account.myProfile": "My Pilgrim Portal",
+  "account.myProfile": "My Bookings",
+  "account.myBookings": "My Bookings",
   "account.myAdminProfile": "My Admin Profile",
 
   // ─── Edit profile ─────────────────────────────────────────

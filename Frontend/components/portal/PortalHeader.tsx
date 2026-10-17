@@ -15,6 +15,7 @@ import {
   BadgeCheck,
   CalendarDays,
   Pencil,
+  Ticket,
 } from "lucide-react";
 import BrandLogo from "@/components/brand/BrandLogo";
 import ProfileEditor from "@/components/portal/ProfileEditor";
@@ -128,6 +129,7 @@ export default function PortalHeader() {
     { id: "stays", label: t("nav.stays"), href: "/stays" },
     { id: "dining", label: t("nav.dining"), href: "/dining" },
     { id: "planner", label: t("nav.planner"), href: "/ai-planner" },
+    { id: "contact", label: t("nav.contact"), href: "/contact" },
   ];
 
   const handleLogout = useCallback(() => {
@@ -173,37 +175,41 @@ export default function PortalHeader() {
   ];
 
   return (
-    <header className="w-full bg-white border-b border-slate-200/80 sticky top-0 z-50 shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
-        {/* Left: Brand Logo */}
-        <Link href="/dashboard" className="group flex-shrink-0">
-          <BrandLogo />
-        </Link>
+    <header className="w-full bg-white/95 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-50 shadow-xs">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 h-18 flex items-center justify-between gap-3 sm:gap-6">
+        {/* Left End: Brand Logo */}
+        <div className="flex-shrink-0 flex items-center">
+          <Link href="/dashboard" className="group flex items-center">
+            <BrandLogo />
+          </Link>
+        </div>
 
-        {/* Center: Desktop Navigation */}
-        <nav className="hidden xl:flex items-center gap-1.5 text-xs font-semibold text-slate-600">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.href ||
-              (item.href === "/dashboard" && pathname === "/");
-            return (
-              <Link
-                key={item.id}
-                href={item.href}
-                className={`px-3.5 py-1.5 rounded-lg transition-all ${
-                  isActive
-                    ? "bg-[#A73710] text-white shadow-xs font-bold"
-                    : "hover:text-[#A73710] hover:bg-slate-50"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+        {/* Center: Desktop Navigation with equal spacing between all items */}
+        <nav className="hidden lg:flex items-center justify-center flex-1 mx-2 xl:mx-6">
+          <div className="flex items-center justify-center gap-1 xl:gap-2.5 2xl:gap-4">
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href === "/dashboard" && pathname === "/");
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className={`px-3 xl:px-3.5 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-all whitespace-nowrap ${
+                    isActive
+                      ? "bg-[#A73710] text-white shadow-xs font-bold"
+                      : "text-slate-700 hover:text-[#A73710] hover:bg-amber-50/60"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
         </nav>
 
-        {/* Right: Devotee account */}
-        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+        {/* Right End: Devotee account & Language controls */}
+        <div className="flex items-center gap-2.5 sm:gap-3.5 flex-shrink-0">
           <PreferencesPanel />
           <div className="relative" ref={profileRef}>
             <button
@@ -212,10 +218,10 @@ export default function PortalHeader() {
               aria-expanded={profileOpen}
               aria-haspopup="true"
               aria-label="Account details"
-              className="flex items-center gap-2.5 pl-2 sm:border-l sm:border-slate-200 py-1 rounded-lg transition-colors hover:bg-slate-50"
+              className="flex items-center gap-2.5 pl-2.5 sm:border-l sm:border-slate-200 py-1 rounded-lg transition-colors hover:bg-slate-50"
             >
-              {/* Avatar with initials */}
-              <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-[#F59E0B]/50 bg-gradient-to-br from-amber-400 to-orange-600 flex-shrink-0 flex items-center justify-center">
+              {/* Avatar with initials - warm saffron orange gradient */}
+              <div className="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-[#F59E0B]/50 bg-gradient-to-br from-amber-400 to-orange-600 flex-shrink-0 flex items-center justify-center shadow-xs">
                 {user ? (
                   <span className="text-white text-[11px] font-bold">
                     {getInitials(user.full_name)}
@@ -330,14 +336,25 @@ export default function PortalHeader() {
                         <Pencil className="w-3.5 h-3.5 text-slate-400" />
                         {t("account.editDetails")}
                       </button>
-                      <Link
-                        href={isAdmin ? "/admin/profile" : "/dashboard"}
-                        onClick={() => setProfileOpen(false)}
-                        className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
-                      >
-                        <User className="w-3.5 h-3.5 text-slate-400" />
-                        {isAdmin ? t("account.myAdminProfile") : t("account.myProfile")}
-                      </Link>
+                      {isAdmin ? (
+                        <Link
+                          href="/admin/profile"
+                          onClick={() => setProfileOpen(false)}
+                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                        >
+                          <User className="w-3.5 h-3.5 text-slate-400" />
+                          {t("account.myAdminProfile")}
+                        </Link>
+                      ) : (
+                        <Link
+                          href="/bookings"
+                          onClick={() => setProfileOpen(false)}
+                          className="flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                        >
+                          <Ticket className="w-3.5 h-3.5 text-[#A73710]" />
+                          {t("account.myBookings")}
+                        </Link>
+                      )}
                       <button
                         type="button"
                         onClick={handleLogout}
@@ -365,7 +382,7 @@ export default function PortalHeader() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100"
+            className="lg:hidden p-2 rounded-lg text-stone-600 hover:bg-stone-100"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -375,7 +392,7 @@ export default function PortalHeader() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-5 flex flex-col gap-2">
+        <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-5 flex flex-col gap-2 shadow-md">
           {user && (
             <div className="mb-2 pb-2 border-b border-slate-100 flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center flex-shrink-0">
@@ -403,13 +420,21 @@ export default function PortalHeader() {
                 className={`px-3.5 py-2 rounded-lg text-xs font-semibold ${
                   isActive
                     ? "bg-[#A73710] text-white font-bold"
-                    : "text-slate-700 hover:bg-slate-50"
+                    : "text-slate-700 hover:text-[#A73710] hover:bg-amber-50/60"
                 }`}
               >
                 {item.label}
               </Link>
             );
           })}
+          <Link
+            href="/bookings"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:text-[#A73710] hover:bg-amber-50/60 transition-colors"
+          >
+            <Ticket className="w-3.5 h-3.5 text-[#A73710]" />
+            {t("account.myBookings")}
+          </Link>
           <button
             type="button"
             onClick={() => setEditorOpen(true)}

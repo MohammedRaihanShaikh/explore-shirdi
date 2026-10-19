@@ -96,11 +96,7 @@ export default function HeroSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-96 bg-gradient-to-b from-amber-200/25 via-orange-100/15 to-transparent blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
-        {/* Official Devotee Assistance Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300/80 text-[10px] sm:text-[11px] font-bold tracking-widest text-[#B45309] uppercase mb-5 sm:mb-6 shadow-2xs">
-          <Sparkles className="w-3.5 h-3.5 text-[#C2410C]" />
-          <span>{t("hero.badge")}</span>
-        </div>
+
 
         {/* Main Heading */}
         <h1 className="max-w-4xl font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight leading-[1.15] mb-4 sm:mb-5">

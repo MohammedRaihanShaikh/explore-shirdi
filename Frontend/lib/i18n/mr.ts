@@ -14,14 +14,32 @@ export const mr: Dictionary = {
 
   // ─── Navigation ───────────────────────────────────────────
   "nav.home": "मुख्यपृष्ठ",
-  "nav.attractions": "शोध आणि आकर्षणे",
-  "nav.darshan": "दर्शन आणि थेट आरती",
-  "nav.stays": "विलासिती निवास आणि आश्रमे",
-  "nav.dining": "प्रसाद आणि भोजन",
-  "nav.planner": "एआय प्रवास योजनाकार",
+  "nav.attractions": "आकर्षणे",
+  "nav.darshan": "दर्शन",
+  "nav.stays": "निवास",
+  "nav.dining": "प्रसाद",
+  "nav.planner": "एआय योजनाकार",
+  "nav.contact": "संपर्क आणि मदत",
   "nav.pilgrimPortal": "भक्त पोर्टल",
   "nav.toggleMenu": "नेव्हिगेशन मेनू बदला",
   "nav.preferences": "पसंती",
+
+  // ─── Contact & Feedback ──────────────────────────────────
+  "contact.title": "संपर्क आणि भक्त मदत",
+  "contact.subtitle": "श्री साईबाबा संस्थान ट्रस्ट हेल्पलाइन, आपत्कालीन सेवा आणि भक्त अभिप्राय",
+  "contact.emergencyHelplines": "आपत्कालीन आणि हेल्पलाइन",
+  "contact.timings": "मंदिर आणि कार्यालय वेळ",
+  "contact.feedbackTitle": "भक्त अभिप्राय आणि चौकशी",
+  "contact.feedbackSubtitle": "तुमचा तीर्थयात्रा अनुभव सामायिक करा किंवा मंदिर ट्रस्टकडे विचारणा करा",
+  "contact.ratingLabel": "तुमचा अनुभव रेटिंग",
+  "contact.categoryLabel": "अभिप्राय श्रेणी",
+  "contact.commentLabel": "तुमचा संदेश / सूचना",
+  "contact.submitFeedback": "अभिप्राय पाठवा",
+  "contact.submitting": "पाठवत आहे...",
+  "contact.feedbackSubmitted": "अभिप्राय यशस्वीरित्या नोंदवला गेला! ॐ साईं राम।",
+  "contact.myFeedback": "माझा अभिप्राय इतिहास",
+  "contact.noFeedback": "तुम्ही अद्याप कोणताही अभिप्राय नोंदवला नाही.",
+  "contact.signInToSubmit": "अभिप्राय पाठवण्यासाठी किंवा आधीच्या चौकशी पाहण्यासाठी कृपया साइन इन करा.",
 
   // ─── Preferences panel ────────────────────────────────────
   "prefs.title": "पसंती",
@@ -51,7 +69,8 @@ export const mr: Dictionary = {
   "account.signOut": "साइन आउट",
   "account.accountDetails": "खाते तपशील",
   "account.editDetails": "माझे तपशील संपादित करा",
-  "account.myProfile": "माझे भक्त पोर्टल",
+  "account.myProfile": "माझ्या बुकिंग",
+  "account.myBookings": "माझ्या बुकिंग",
   "account.myAdminProfile": "माझे प्रशासक प्रोफाइल",
 
   // ─── Edit profile ─────────────────────────────────────────

@@ -5,6 +5,9 @@
 /.next/
 /out/
 /build/
+/dist/
+.vercel
+.turbo
 
 # TypeScript cache
 *.tsbuildinfo
@@ -16,6 +19,23 @@ npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
 
-# Local environment files
+# Local environment files (Secrets & Keys)
+.env
 .env*
+.env.local
+.env.*.local
 !.env.example
+*.pem
+*.key
+credentials.json
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Assistant files
+AGENTS.md
+CLAUDE.md

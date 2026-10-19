@@ -89,6 +89,20 @@ export interface StayBookingResponse {
   created_at: string;
 }
 
+export interface DiningBookingResponse {
+  id: number;
+  booking_ref: string;
+  dining_id: string;
+  hall_name: string;
+  meal_date: string;
+  time_slot: string;
+  num_devotees: number;
+  total_price: number;
+  status: string;
+  special_requests?: string | null;
+  created_at: string;
+}
+
 export interface UserProfileUpdate {
   full_name?: string;
   email?: string;
@@ -613,6 +627,24 @@ export const api = {
       request(`/stays/${bookingId}`, { method: "DELETE" }, token),
   },
 
+  // Dining Bookings
+  dining: {
+    catalog: () => request<unknown[]>("/dining/catalog"),
+
+    book: (data: unknown, token: string) =>
+      request<unknown>(
+        "/dining/book",
+        { method: "POST", body: JSON.stringify(data) },
+        token
+      ),
+
+    myBookings: (token: string) =>
+      request<DiningBookingResponse[]>("/dining/my-bookings", {}, token),
+
+    cancel: (bookingId: number, token: string) =>
+      request(`/dining/${bookingId}`, { method: "DELETE" }, token),
+  },
+
   // AI Itinerary
   itinerary: {
     generate: (data: ItineraryRequest, token: string) =>
@@ -667,6 +699,8 @@ export const api = {
         token
       ),
     myFeedback: (token: string) => request<FeedbackItem[]>("/feedback/mine", {}, token),
+    deleteFeedback: (id: number, token: string) =>
+      request<{ message: string; success: boolean }>(`/feedback/${id}`, { method: "DELETE" }, token),
   },
 
   // Payments (Razorpay)

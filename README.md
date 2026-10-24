@@ -41,7 +41,7 @@ python --version
 
 ---
 
-## 🚀 Full Setup for a New User
+## 🚀 Full Setup for a New User to use the 
 
 ### Step 1 — Clone the Repository
 

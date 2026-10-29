@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "build": "cd Frontend && npm run build",
     "dev:backend": "cd Backend && python run.py",
     "dev:frontend": "cd Frontend && npm run dev",
     "build:frontend": "cd Frontend && npm run build"

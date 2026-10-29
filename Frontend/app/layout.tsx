@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { PreferencesProvider } from "@/lib/i18n";
+import { AuthProvider } from "@/context/AuthContext";
 
 export const viewport: Viewport = {
   width: "device-width",
